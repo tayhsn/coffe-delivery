@@ -12,20 +12,25 @@ import {
 } from './styles'
 
 const TAGS_TYPES = [
-  'TRADICIONAL',
-  'ESPECIAL',
-  'COM LEITE',
-  'ALCOÓLICO',
-  'GELADO',
+  'todos',
+  'tradicional',
+  'especial',
+  'com leite',
+  'alcoólico',
+  'gelado',
 ]
 
 export const ProductsList = () => {
   const { colors } = useTheme()
-  const [tagFilter, setTagFilter] = useState('')
+  const [tagFilter, setTagFilter] = useState<string | null>(null)
 
-  const coffesFiltered = (selectedTag: string) => {
-    setTagFilter(selectedTag)
+  const handleFilter = (selectedTag: string) => {
+    selectedTag === 'todos' ? setTagFilter(null) : setTagFilter(selectedTag)
   }
+
+  const filteredCoffees = coffesList.filter((coffee) =>
+    tagFilter ? coffee.tags.includes(tagFilter) : true
+  )
 
   return (
     <ProductsListContainer>
@@ -36,16 +41,16 @@ export const ProductsList = () => {
             <TagContainer
               key={tag}
               colorBg={colors['base-white']}
-              onClick={() => coffesFiltered(tag)}
+              onClick={() => handleFilter(tag)}
             >
-              {tag}
+              {tag.toUpperCase()}
             </TagContainer>
           ))}
         </FilterByContainer>
       </ListHeader>
 
       <ListContainer>
-        {coffesList.map((coffee) => (
+        {filteredCoffees.map((coffee) => (
           <CardItem key={coffee.id} coffee={coffee} />
         ))}
       </ListContainer>
