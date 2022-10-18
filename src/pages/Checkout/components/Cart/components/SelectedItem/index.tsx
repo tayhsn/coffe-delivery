@@ -3,6 +3,7 @@ import { QuantityInput } from '../../../../../../components/QuantityInput'
 import { RegularText } from '../../../../../../components/Typography'
 import { CartItem } from '../../../../../../context/CartContext'
 import { useCart } from '../../../../../../hooks/useCart'
+import { formatMoney } from '../../../../../../utils/formatMoney'
 import { ActionContainer, DeleteButton, SelectedItemContainer } from './styles'
 
 interface CoffeeCartCardProps {
@@ -23,6 +24,9 @@ export const SelectedItem = ({ coffee }: CoffeeCartCardProps) => {
   const handleRemove = () => {
     removeItem(coffee.id)
   }
+
+  const coffeeTotal = coffee.price * coffee.quantity
+  const formattedPrice = formatMoney(coffeeTotal)
 
   return (
     <SelectedItemContainer>
@@ -50,7 +54,7 @@ export const SelectedItem = ({ coffee }: CoffeeCartCardProps) => {
       </ActionContainer>
 
       <span>
-        <strong>R${coffee.price}</strong>
+        <strong>R${formattedPrice}</strong>
       </span>
     </SelectedItemContainer>
   )
