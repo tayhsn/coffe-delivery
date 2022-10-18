@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTheme } from 'styled-components'
 import { TitleText } from '../../../../components/Typography'
-import { coffesList } from '../../../../utils/CoffesList'
+import { coffesList } from '../../../../data/CoffesList'
 import { CardItem } from './components/CardItem'
 import {
   FilterByContainer,
