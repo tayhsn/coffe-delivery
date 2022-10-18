@@ -15,6 +15,7 @@ export const QuantityInputContainer = styled.span`
   border-radius: 6px;
 
   input {
+    text-align: center;
     width: 100%;
     background: none;
     border: none;
