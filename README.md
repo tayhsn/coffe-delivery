@@ -4,7 +4,7 @@
 
 ![Capa](./public/capa.png)
 
-## 📲 [Link do deploy]()
+## 📲 [Link do deploy](https://coffe-delivery-chi.vercel.app/)
 
 ## 📑 Sobre o projeto
 
@@ -22,7 +22,7 @@ Esta aplicação é o desafio do Módulo "Construindo SPAs com React" do Ignite,
 ## 🧠 Aprendizados
 
 - Estado Global
-- Contextos
+- Context API
 - Reducers
 
 ## 🛠 Tecnologias utilizadas
