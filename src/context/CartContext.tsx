@@ -76,8 +76,18 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
       if (coffeExistsInCart >= 0) {
         const item = draft[coffeExistsInCart]
-        draft[coffeExistsInCart].quantity =
-          type === 'increase' ? item.quantity + 1 : item.quantity - 1
+
+        switch (type) {
+          case 'increase': {
+            draft[coffeExistsInCart].quantity = item.quantity + 1
+            break
+          }
+          case 'decrease': {
+            draft[coffeExistsInCart].quantity >= 1 &&
+              (draft[coffeExistsInCart].quantity = item.quantity - 1)
+            break
+          }
+        }
       }
     })
 
