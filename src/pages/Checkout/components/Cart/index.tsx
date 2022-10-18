@@ -14,7 +14,7 @@ const DELIVERY_FEE = 3.5
 
 export const Cart = () => {
   const { cartItems, cartItemsTotal, cartQuantity } = useCart()
-  const cartTotal = DELIVERY_FEE * cartItemsTotal
+  const cartTotal = DELIVERY_FEE + cartItemsTotal
 
   const formattedItemsTotal = formatMoney(cartItemsTotal)
   const formattedCartTotal = formatMoney(cartTotal)
