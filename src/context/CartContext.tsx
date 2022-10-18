@@ -1,6 +1,11 @@
-import produce from 'immer'
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { Coffee } from '../data/CoffesList'
+import {
+  addCoffeeToCartAction,
+  changeCartItemQuantityAction,
+  removeItemAction,
+} from '../reducers/actions'
+import { cartReducer } from '../reducers/reducer'
 
 export interface CartItem extends Coffee {
   quantity: number
@@ -10,7 +15,7 @@ interface CartContextType {
   cartItems: CartItem[]
   cartQuantity: number
   cartItemsTotal: number
-  addItemToCart: (coffee: CartItem) => void
+  addCoffeeToCart: (coffee: CartItem) => void
   changeCartItemQuantity: (
     cartItemId: number,
     type: 'increase' | 'decrease'
@@ -25,14 +30,26 @@ interface CartContextProviderProps {
   children: ReactNode
 }
 
-const LOCAL_STORAGE_KEY = '@coffe-delivery:cartItems'
+const LOCAL_STORAGE_KEY = '@coffee-delivery:cartItems'
 
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    const storageCartItems = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (storageCartItems) return JSON.parse(storageCartItems)
-    return []
-  })
+  const [cartState, dispatch] = useReducer(
+    cartReducer,
+    {
+      cartItems: [],
+    },
+    () => {
+      const storageCartItems = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+      if (storageCartItems) return JSON.parse(storageCartItems)
+
+      return {
+        cartItems: [],
+      }
+    }
+  )
+
+  const { cartItems } = cartState
 
   const cartQuantity = cartItems.length
 
@@ -40,61 +57,22 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     return total + cartItems.price * cartItems.quantity
   }, 0)
 
-  const addItemToCart = (coffe: CartItem) => {
-    const coffeAlreadyExists = cartItems.findIndex(
-      (product) => product.id === coffe.id
-    )
-
-    const newCart = produce(cartItems, (draft) => {
-      if (coffeAlreadyExists < 0) draft.push(coffe)
-      else draft[coffeAlreadyExists].quantity += coffe.quantity
-    })
-
-    setCartItems(newCart)
+  const addCoffeeToCart = (coffee: CartItem) => {
+    dispatch(addCoffeeToCartAction(coffee))
   }
 
   const removeItem = (cartItemId: number) => {
-    const newCart = produce(cartItems, (draft) => {
-      const coffeExistsInCart = cartItems.findIndex(
-        (product) => product.id === cartItemId
-      )
-
-      if (coffeExistsInCart >= 0) draft.splice(coffeExistsInCart, 1)
-    })
-
-    setCartItems(newCart)
+    dispatch(removeItemAction(cartItemId))
   }
 
   const changeCartItemQuantity = (
     cartItemId: number,
     type: 'increase' | 'decrease'
   ) => {
-    const newCart = produce(cartItems, (draft) => {
-      const coffeExistsInCart = cartItems.findIndex(
-        (product) => product.id === cartItemId
-      )
-
-      if (coffeExistsInCart >= 0) {
-        const item = draft[coffeExistsInCart]
-
-        switch (type) {
-          case 'increase': {
-            draft[coffeExistsInCart].quantity = item.quantity + 1
-            break
-          }
-          case 'decrease': {
-            draft[coffeExistsInCart].quantity >= 1 &&
-              (draft[coffeExistsInCart].quantity = item.quantity - 1)
-            break
-          }
-        }
-      }
-    })
-
-    setCartItems(newCart)
+    dispatch(changeCartItemQuantityAction(cartItemId, type))
   }
 
-  const cleanCart = () => setCartItems([])
+  const cleanCart = () => dispatch(cleanCartAction())
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cartItems))
@@ -106,7 +84,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         cartItems,
         cartQuantity,
         cartItemsTotal,
-        addItemToCart,
+        addCoffeeToCart,
         removeItem,
         changeCartItemQuantity,
         cleanCart,
