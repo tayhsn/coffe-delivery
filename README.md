@@ -2,9 +2,9 @@
 
 > Aplicativo para gerenciamento de pedidos de uma cafeteria.
 
-![Capa](./public/capa.png)
-
 ## 📲 [Link do deploy](https://coffe-delivery-chi.vercel.app/)
+
+![Capa](./public/capa.png)
 
 ## 📑 Sobre o projeto
 
