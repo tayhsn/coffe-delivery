@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { createContext, ReactNode, useEffect, useState } from 'react'
-import { Coffee } from '../utils/CoffesList'
+import { Coffee } from '../data/CoffesList'
 
 export interface CartItem extends Coffee {
   quantity: number
