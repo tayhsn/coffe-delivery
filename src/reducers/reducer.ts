@@ -1,21 +1,24 @@
 import produce from 'immer'
 import { CartItem } from '../context/CartContext'
-import { ActionTypes } from './actions'
+import { Actions } from './actions'
 
-interface CartState {
+export interface CartState {
   cartItems: CartItem[]
 }
 
 export const cartReducer = (state: CartState, action: any) => {
-  switch (action.type) {
-    case ActionTypes.ADD_COFFEE_TO_CART: {
-      const coffee = action.payload.coffee
+  const { cartItems } = state
+  const { type, payload } = action
 
-      const coffeeAlreadyInCart = state.cartItems.findIndex(
+  switch (type) {
+    case Actions.ADD_COFFEE_TO_CART: {
+      const coffee = payload.coffee
+
+      const coffeeAlreadyInCart = cartItems.findIndex(
         (product) => product.id === coffee.id
       )
 
-      return produce(state.cartItems, (draft) => {
+      return produce(cartItems, (draft) => {
         if (coffeeAlreadyInCart < 0) {
           draft.push(coffee)
         } else {
@@ -23,11 +26,14 @@ export const cartReducer = (state: CartState, action: any) => {
         }
       })
     }
-    case ActionTypes.REMOVE_ITEM: {
-      const cartItemId = action.payload.cartItemId
+    case Actions.REMOVE_ITEM: {
+      const { cartItems } = state
+      const { payload } = action
 
-      return produce(state.cartItems, (draft) => {
-        const coffeeExistsInCart = state.cartItems.findIndex(
+      const { cartItemId } = payload
+
+      return produce(cartItems, (draft) => {
+        const coffeeExistsInCart = cartItems.findIndex(
           (product) => product.id === cartItemId
         )
 
@@ -36,12 +42,14 @@ export const cartReducer = (state: CartState, action: any) => {
         }
       })
     }
-    case ActionTypes.CHANGE_CART_ITEM_QUANTITY: {
-      const cartItemId = action.payload.cartItemId
-      const change = action.payload.change
+    case Actions.CHANGE_CART_ITEM_QUANTITY: {
+      const { cartItems } = state
+      const { payload } = action
 
-      return produce(state.cartItems, (draft) => {
-        const coffeeExistsInCart = state.cartItems.findIndex(
+      const { cartItemId, change } = payload
+
+      return produce(cartItems, (draft) => {
+        const coffeeExistsInCart = cartItems.findIndex(
           (product) => product.id === cartItemId
         )
 
@@ -62,10 +70,10 @@ export const cartReducer = (state: CartState, action: any) => {
         }
       })
     }
-    case ActionTypes.CLEAN_CART: {
-      return produce(state.cartItems, (draft) => (draft = []))
+    case Actions.CLEAN_CART: {
+      return produce(cartItems, (draft) => (draft = []))
     }
     default:
-      throw new Error()
+      return state
   }
 }
