@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTheme } from 'styled-components'
 import { TitleText } from '../../../../components/Typography'
-import { coffesList } from '../../../../data/CoffesList'
+import { coffeesList } from '../../../../data/CoffeesList'
 import { CardItem } from './components/CardItem'
 import {
   FilterByContainer,
@@ -28,7 +28,7 @@ export const ProductsList = () => {
     selectedTag === 'todos' ? setTagFilter(null) : setTagFilter(selectedTag)
   }
 
-  const filteredCoffees = coffesList.filter((coffee) =>
+  const filteredCoffees = coffeesList.filter((coffee) =>
     tagFilter ? coffee.tags.includes(tagFilter) : true
   )
 

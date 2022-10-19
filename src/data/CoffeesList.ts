@@ -1,17 +1,17 @@
-import Arabe from '../assets/coffes/arabe.png'
-import Capuccino from '../assets/coffes/capuccino.png'
-import CafeComLeite from '../assets/coffes/cafe-com-leite.png'
-import ChocolateQuente from '../assets/coffes/chocolate-quente.png'
-import Cubano from '../assets/coffes/cubano.png'
-import ExpressoTradicional from '../assets/coffes/expresso.png'
-import ExpressoAmericano from '../assets/coffes/americano.png'
-import ExpressoCremoso from '../assets/coffes/expresso-cremoso.png'
-import ExpressoGelado from '../assets/coffes/cafe-gelado.png'
-import Havaiano from '../assets/coffes/havaiano.png'
-import Irlandes from '../assets/coffes/irlandes.png'
-import Latte from '../assets/coffes/latte.png'
-import Mocaccino from '../assets/coffes/mocaccino.png'
-import Macchiato from '../assets/coffes/macchiato.png'
+import Arabe from '../assets/coffees/arabe.png'
+import Capuccino from '../assets/coffees/capuccino.png'
+import CafeComLeite from '../assets/coffees/cafe-com-leite.png'
+import ChocolateQuente from '../assets/coffees/chocolate-quente.png'
+import Cubano from '../assets/coffees/cubano.png'
+import ExpressoTradicional from '../assets/coffees/expresso.png'
+import ExpressoAmericano from '../assets/coffees/americano.png'
+import ExpressoCremoso from '../assets/coffees/expresso-cremoso.png'
+import ExpressoGelado from '../assets/coffees/cafe-gelado.png'
+import Havaiano from '../assets/coffees/havaiano.png'
+import Irlandes from '../assets/coffees/irlandes.png'
+import Latte from '../assets/coffees/latte.png'
+import Mocaccino from '../assets/coffees/mocaccino.png'
+import Macchiato from '../assets/coffees/macchiato.png'
 
 export interface Coffee {
   id: number
@@ -23,7 +23,7 @@ export interface Coffee {
   isAvaliable?: boolean
 }
 
-export const coffesList: Coffee[] = [
+export const coffeesList: Coffee[] = [
   {
     id: 1,
     name: 'Expresso Tradicional',

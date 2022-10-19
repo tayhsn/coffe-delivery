@@ -1,9 +1,14 @@
-import homeCoffe from '../../../../assets/home-coffe.png'
+import homeCoffee from '../../../../assets/home-coffee.png'
 import { useTheme } from 'styled-components'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { InfoWithIcon } from '../../../../components/InfoWithIcon'
 import { RegularText, TitleText } from '../../../../components/Typography'
-import { BannerContainer, IconsContainer, InfoBanner, InfoContainer } from './styles'
+import {
+  BannerContainer,
+  IconsContainer,
+  InfoBanner,
+  InfoContainer,
+} from './styles'
 
 export const Banner = () => {
   const { colors } = useTheme()
@@ -16,7 +21,7 @@ export const Banner = () => {
             Encontre o café perfeito para qualquer hora do dia
           </TitleText>
           <RegularText size="l" color="subtitle">
-            Com o Coffe Delivery você recebe seu café onde estiver, a qualquer
+            Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
             hora
           </RegularText>
         </InfoBanner>
@@ -48,7 +53,7 @@ export const Banner = () => {
         </IconsContainer>
       </InfoContainer>
 
-      <img src={homeCoffe} />
+      <img src={homeCoffee} />
     </BannerContainer>
   )
 }

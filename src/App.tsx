@@ -16,9 +16,10 @@ interface ThemeContextType {
 
 export const ThemeContext = createContext({} as ThemeContextType)
 
+const THEME_LOCAL_STORAGE = '@coffee-delivery:theme'
 export function App() {
   const [theme, setTheme] = useState(() => {
-    const storageTheme = localStorage.getItem('@coffe-delivery:theme')
+    const storageTheme = localStorage.getItem(THEME_LOCAL_STORAGE)
 
     if (storageTheme) {
       return JSON.parse(storageTheme)
@@ -30,7 +31,7 @@ export function App() {
   const toggleTheme = () => {
     const themeNow = theme === 'default' ? 'dark' : 'default'
     setTheme(themeNow)
-    localStorage.setItem('@coffe-delivery:theme', JSON.stringify(themeNow))
+    localStorage.setItem(THEME_LOCAL_STORAGE, JSON.stringify(themeNow))
   }
 
   return (

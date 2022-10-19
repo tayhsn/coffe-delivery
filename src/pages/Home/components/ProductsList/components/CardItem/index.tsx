@@ -30,7 +30,7 @@ interface CoffeeProps {
 
 export const CardItem = ({ coffee }: CoffeeProps) => {
   const { colors } = useTheme()
-  const { addItemToCart } = useCart()
+  const { addCoffeeToCart } = useCart()
   const [quantity, setQuantity] = useState(0)
 
   const handleIncrease = () => {
@@ -46,7 +46,7 @@ export const CardItem = ({ coffee }: CoffeeProps) => {
       ...coffee,
       quantity,
     }
-    addItemToCart(coffeeToAdd)
+    addCoffeeToCart(coffeeToAdd)
   }
 
   const formattedPrice = formatMoney(coffee.price)
