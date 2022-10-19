@@ -1,13 +1,12 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { Coffee } from '../data/CoffesList'
 import {
-  Actions,
   addCoffeeToCartAction,
   changeCartItemQuantityAction,
   cleanCartAction,
   removeItemAction,
 } from '../reducers/actions'
-import { cartReducer, CartState } from '../reducers/reducer'
+import { cartReducer } from '../reducers/reducer'
 
 export interface CartItem extends Coffee {
   quantity: number
@@ -34,24 +33,14 @@ interface CartContextProviderProps {
 
 const LOCAL_STORAGE_KEY = '@coffee-delivery:cartItems'
 
-const initialStateCart: CartState = {
-  cartItems: [],
-}
-
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
-  const [cartState, dispatch] = useReducer(
-    cartReducer,
-    initialStateCart,
-    () => {
-      const storagedCartItems = localStorage.getItem(LOCAL_STORAGE_KEY)
+  const [cartItems, dispatch] = useReducer(cartReducer, [], () => {
+    const storagedCartItems = localStorage.getItem(LOCAL_STORAGE_KEY)
 
-      if (storagedCartItems) return JSON.parse(storagedCartItems)
+    if (storagedCartItems) return JSON.parse(storagedCartItems)
 
-      return initialStateCart
-    }
-  )
-
-  const { cartItems } = cartState
+    return []
+  })
 
   const cartQuantity = cartItems.length
 

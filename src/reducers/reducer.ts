@@ -1,13 +1,8 @@
-import produce from 'immer'
+import { produce } from 'immer'
 import { CartItem } from '../context/CartContext'
 import { Actions } from './actions'
 
-export interface CartState {
-  cartItems: CartItem[]
-}
-
-export const cartReducer = (state: CartState, action: any) => {
-  const { cartItems } = state
+export const cartReducer = (cartItems: CartItem[], action: any): CartItem[] => {
   const { type, payload } = action
 
   switch (type) {
@@ -27,7 +22,6 @@ export const cartReducer = (state: CartState, action: any) => {
       })
     }
     case Actions.REMOVE_ITEM: {
-      const { cartItems } = state
       const { payload } = action
 
       const { cartItemId } = payload
@@ -43,7 +37,6 @@ export const cartReducer = (state: CartState, action: any) => {
       })
     }
     case Actions.CHANGE_CART_ITEM_QUANTITY: {
-      const { cartItems } = state
       const { payload } = action
 
       const { cartItemId, change } = payload
@@ -74,6 +67,6 @@ export const cartReducer = (state: CartState, action: any) => {
       return produce(cartItems, (draft) => (draft = []))
     }
     default:
-      return state
+      throw new Error(`Unhandled type ${type}`)
   }
 }
