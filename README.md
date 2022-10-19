@@ -1,4 +1,4 @@
-# Coffe Delivery
+# Coffee Delivery ☕️
 
 > Aplicativo para gerenciamento de pedidos de uma cafeteria.
 
@@ -14,8 +14,8 @@ Esta aplicação é o desafio do Módulo "Construindo SPAs com React" do Ignite,
 
 ## ✍🏻 Funcionalidades
 
-- Listagem de produtos na página princial com filtro por tipo de café.
-- Listagem dos items no carrinho, com o preço dos items e valor total do pedido.
+- Listagem de produtos na página princial que possui filtragem por tipo de café.
+- Listagem dos items do carrinho e amostragem do preço dos items e do valor total do pedido.
 - Adicionar/remover items do carrinho e aumentar/diminuir quantidade de items.
 - Validar os inputs de endereço e forma de pagamento e confirmar a entrega do pedido.
 
@@ -23,7 +23,7 @@ Esta aplicação é o desafio do Módulo "Construindo SPAs com React" do Ignite,
 
 - Estado Global
 - Context API
-- Reducers
+- Reducer API
 
 ## 🛠 Tecnologias utilizadas
 

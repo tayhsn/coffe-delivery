@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react'
-import { Coffee } from '../data/CoffesList'
+import { Coffee } from '../data/CoffeesList'
 import {
   addCoffeeToCartAction,
   changeCartItemQuantityAction,

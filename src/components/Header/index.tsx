@@ -2,7 +2,7 @@ import { MapPin, Moon, ShoppingCart, Sun } from 'phosphor-react'
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ThemeContext } from '../../App'
-import coffeLogo from '../../assets/coffe-logo.svg'
+import coffeeLogo from '../../assets/coffee-logo.svg'
 import { useCart } from '../../hooks/useCart'
 import {
   ButtonDarkLight,
@@ -18,7 +18,7 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <NavLink to="/">
-        <img src={coffeLogo} alt="Coffe Delivery logotipo" />
+        <img src={coffeeLogo} alt="Coffee Delivery logotipo" />
       </NavLink>
 
       <HeaderButtonsContainer>
