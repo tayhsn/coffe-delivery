@@ -8,7 +8,7 @@
 
 ## 📑 Sobre o projeto
 
-Esta aplicação é o desafio do Módulo "Construindo SPAs com React" do Ignite, curso de especialização da Rocketseat.
+Esta aplicação é **o projeto de conclusão** do módulo "Construindo SPAs com React" do curso de especialização Ignite.
 
 ### [Layout no figma](<https://www.figma.com/file/f89VcLKSllyuNUktm08p4r/Coffee-Delivery-(Copy)?node-id=0%3A1>)
 
